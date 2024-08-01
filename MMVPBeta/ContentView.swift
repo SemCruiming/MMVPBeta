@@ -9,7 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     @State var selectedTab = 0
-    @State var showOnboarding: Bool = true
+    @AppStorage("showOnboarding") var showOnboarding: Bool = true
+   
     
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -41,7 +42,7 @@ struct ContentView: View {
                 .tag(2)
         }
         .fullScreenCover(isPresented: $showOnboarding, content: {
-           OnboardingView()
+            OnboardingView(showOnboarding: $showOnboarding)
         })
     }
 }
